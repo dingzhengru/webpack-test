@@ -19,7 +19,7 @@
 or(需要在package.json => "scripts" add "build": "webpack")  
 ```npm run build```
 
-## Plugin(優先引入的Plugin)
+## Plugins(優先引入的Plugin)
 ### html-webpack-plugin
 自動產生html至dist  
 ```npm install --save-dev html-webpack-plugin```  
@@ -42,12 +42,6 @@ plugins: [
     new CleanWebpackPlugin()
 ]
 ```
-## index.html
-### Import your Js & Library
-```
-<script src="https://unpkg.com/lodash@4.16.6"></script>
-<script src="./src/index.js"></script>
-```
 ## src/index.js
 ### Import Library
 ```
@@ -55,11 +49,11 @@ import _ from 'lodash'
 ```
 ## Import css
 ```npm install --save-dev style-loader css-loader```
-### index.js
+index.js  
 ```
 import './style.css'
 ```
-### webpack.config.js => module:{} => rules:[]
+webpack.config.js => module:{} => rules:[]  
 ```
 {
     test: /\.css$/,
@@ -71,11 +65,11 @@ import './style.css'
 ```
 ## Import image
 ```npm install --save-dev file-loader```
-### index.js
+index.js  
 ```
 import Icon from './icon.png'
 ```
-### webpack.config.js => module:{} => rules:[]
+webpack.config.js => module:{} => rules:[]  
 ```
 {
     test: /\.(png|svg|jpg|gif)$/,
@@ -86,7 +80,7 @@ import Icon from './icon.png'
 ```
 
 ## Import fonts
-### webpack.config.js => module:{} => rules:[]
+webpack.config.js => module:{} => rules:[]  
 ```
 {
     test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -95,7 +89,7 @@ import Icon from './icon.png'
     ]
 }
 ```
-### Then can use @font-face in .css 
+Then can use @font-face in .css  
 ```
 @font-face {
     font-family: 'MyFont';
