@@ -20,8 +20,8 @@ or(需要在package.json => "scripts" add "build": "webpack")
 ```npm run build```
 
 ## Plugin(優先引入的Plugin)
-### HtmlWebpackPlugin
-HtmlWebpackPlugin:自動產生html至dist  
+### html-webpack-plugin
+自動產生html至dist  
 ```npm install --save-dev html-webpack-plugin```
 webpack.config.js    
 ```
@@ -32,8 +32,8 @@ plugins: [
     })
 ]
 ```
-### HtmlWebpackPlugin
-CleanWebpackPlugin:自動產生html至dist  
+### clean-webpack-plugin
+自動產生html至dist  
 ```npm install --save-dev clean-webpack-plugin```
 webpack.config.js    
 ```
