@@ -22,7 +22,7 @@ or(需要在package.json => "scripts" add "build": "webpack")
 ## Plugin(優先引入的Plugin)
 ### html-webpack-plugin
 自動產生html至dist  
-```npm install --save-dev html-webpack-plugin```
+```npm install --save-dev html-webpack-plugin```  
 webpack.config.js    
 ```
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -34,7 +34,7 @@ plugins: [
 ```
 ### clean-webpack-plugin
 自動產生html至dist  
-```npm install --save-dev clean-webpack-plugin```
+```npm install --save-dev clean-webpack-plugin```  
 webpack.config.js    
 ```
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
