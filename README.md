@@ -1,5 +1,5 @@
 # My webpack test
-
+```
 |- package.json
 |- webpack.config.js
 |- index.html
@@ -11,15 +11,37 @@
   |- style.css
   |- index.js
 |- /node_modules
-
+```
 ## Install
 ```npm install --save-dev webpack webpack-cli```
-
 ## bundle src to dist
 ```npx webpack```  
 or(需要在package.json => "scripts" add "build": "webpack")  
 ```npm run build```
 
+## Plugin(優先引入的Plugin)
+### HtmlWebpackPlugin
+HtmlWebpackPlugin:自動產生html至dist  
+```npm install --save-dev html-webpack-plugin```
+webpack.config.js    
+```
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+plugins: [
+    new HtmlWebpackPlugin({
+        title: 'html title'
+    })
+]
+```
+### HtmlWebpackPlugin
+CleanWebpackPlugin:自動產生html至dist  
+```npm install --save-dev clean-webpack-plugin```
+webpack.config.js    
+```
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+plugins: [
+    new CleanWebpackPlugin()
+]
+```
 ## index.html
 ### Import your Js & Library
 ```
@@ -116,8 +138,27 @@ import CsvData from './data.csv';
 ```
 import XmlData from './data.xml';
 ```
+
 ## package.json
 
 
 ## webpack.config.js
 
+### Multi Bundle
+webpack.config.js  
+```
+    entry: {
+        app: './src/index.js',
+        print: './src/print.js'
+    },
+    output: {
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist')
+    }
+```
+index.html (bundle.js -> app.bundle.js)  
+```<script src="./app.bundle.js"></script>```
+
+## Plugins(Other)
+### webpack-manifest-plugin: This will generate a manifest.json file
+```npm install --save-dev webpack-manifest-plugin```
