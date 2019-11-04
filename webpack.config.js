@@ -1,5 +1,4 @@
 
-
 // mode: "production" | "development" | "none"
 // entry: 入口js檔
 // output: 出口js擋  filename, publicPath, library, libraryTarget
@@ -45,7 +44,24 @@ module.exports = {
     mode: "none",
     entry: './src/index.js',
     output: {
-        filename: 'main.js',
+        filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist')
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: [
+                    'file-loader'
+                ]
+            }
+        ]
     }
 };
