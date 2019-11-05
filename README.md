@@ -1,8 +1,8 @@
 # My webpack test
+## Webpack: webpack幫我們做的事情很簡單，就是幫我們編譯我們的Preprocess成瀏覽器看得懂的內容然後打包成一包的完成檔案然後拿去server上傳上去。  
 ```
 |- package.json
 |- webpack.config.js
-|- index.html
 |- server.js
 |- /dist
   |- main.js
@@ -228,6 +228,20 @@ server.listen(5000, 'localhost', () => {
     console.log('dev server listening on port 5000');
 });
 ```
+## 代碼分離
+入口起點：使用 entry 配置手動地分離代碼(現在用的)  
+防止重複：使用 SplitChunksPlugin 去重和分離chunk(會將重複引入的module放在chunk)
+動態導入：通過模塊中的內聯函數調用來分離代碼  
+
+### 防止重複: 可以防止重複引入重複的library(ex: lodash)
+webpack.config.js  
+```
+optimization: {
+    splitChunks: {
+        chunks: 'all'
+    }
+}
+```
 
 ## package.json
 ### Watch mode 存代碼自動重新編譯(不用再一直修改完手動打包)
@@ -241,7 +255,7 @@ server.listen(5000, 'localhost', () => {
 
 ## webpack.config.js
 
-### devtool: 避免在production中使用 inline-... 和 eval-...，因為它們會增加bundle體積大小，並降低整體性能。
+### devtool: 避免在production中使用 inline-... 和 eval-...，會增加bundle體積大小，降低整體性能。
 
 ### Multi Bundle
 webpack.config.js  
