@@ -7,12 +7,13 @@ import './wallpaper.jpg';
 import JsonData from './data.json'
 
 import printMe from './print.js';
+import { cube } from './math.js';
 
 function component() {
     const element = document.createElement('div');
     const btn = document.createElement('button');
 
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    element.innerHTML = _.join(['Hello', 'webpack', '2'], ' ');
     
     // CSS
     element.classList.add('hello');
@@ -35,4 +36,19 @@ function component() {
     return element;
 }
 
-document.body.appendChild(component());
+let element = component();
+document.body.appendChild(element);
+console.log(cube(5));
+
+if (module.hot) {
+    module.hot.accept('./print.js', function() {
+        console.log('Accepting the updated "printMe" module!');
+        document.body.removeChild(element); // 刪除
+        element = component(); // Re-render the "component" to update the click handler
+        element = component(); // 重新渲染 component，剎車更新單擊事件處理函數
+        document.body.appendChild(element);
+    }),
+    module.hot.accept('./math.js', function() {
+        console.log('Accepting the updated "math" module!');
+    })
+}

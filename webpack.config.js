@@ -30,7 +30,7 @@
 */
 // resolve: {} 解析modules請求的選項
 // performance: { hints: "warning" | "error" | false } 設定效能提示
-// devtool: "source-map" 設定browser devtools的顯示訊息(source-map最詳細)
+// devtool: "source-map" 打包設定，inline-source-map選項有助於解釋說明錯誤在哪裡
 // context: __dirname webpack的主目錄
 // target: "web" 設定運行環境
 // externals
@@ -41,23 +41,33 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
     mode: 'development',
-    entry: {
-        app: './src/index.js',
-        print: './src/print.js'
+    optimization: {
+      usedExports: true
     },
-    output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist')
+    entry: {
+        app: './src/index.js'
+    },
+    devtool: 'inline-source-map',
+    devServer: {
+        contentBase: './dist',
+        hot: true
     },
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title: 'html title'
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ],
+    output: {
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: './'
+    },
     module: {
         rules: [
             {
