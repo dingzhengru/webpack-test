@@ -98,7 +98,7 @@ package.json(添加一個script, 方便運行)
     "server": "node server.js"
 }
 ```
-
+```npm run server```
 ## src/index.js
 ### Import Library
 ```
