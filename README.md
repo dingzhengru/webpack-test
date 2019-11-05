@@ -34,7 +34,7 @@ plugins: [
 ]
 ```
 ### clean-webpack-plugin
-會先清除dist
+會先清除dist  
 ```npm install --save-dev clean-webpack-plugin```  
 webpack.config.js    
 ```
