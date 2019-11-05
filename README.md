@@ -241,6 +241,8 @@ server.listen(5000, 'localhost', () => {
 
 ## webpack.config.js
 
+### devtool: 避免在production中使用 inline-... 和 eval-...，因為它們會增加bundle體積大小，並降低整體性能。
+
 ### Multi Bundle
 webpack.config.js  
 ```
